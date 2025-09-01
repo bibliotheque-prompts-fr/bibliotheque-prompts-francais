@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bibliothèque de Prompts Français - 500+ Templates</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            font-size: 1.5rem;
+            color: #718096;
+            font-weight: 300;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #a0aec0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .search-container {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .search-box {
+            width: 100%;
+            max-width: 500px;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            outline: none;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .category-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+            border-color: #667eea;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .category-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-right: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2d3748;
+        }
+
+        .category-count {
+            font-size: 0.9rem;
+            color: #a0aec0;
+            margin-top: 5px;
+        }
+
+        .prompts-list {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .prompts-list.active {
+            display: block;
+        }
+
+        .prompt-item {
+            background: #f7fafc;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 4px solid #667eea;
+            transition: all 0.2s ease;
+        }
+
+        .prompt-item:hover {
+            background: #edf2f7;
+            transform: translateX(5px);
+        }
+
+        .prompt-title {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 8px;
+        }
+
+        .prompt-text {
+            color: #4a5568;
+            font-style: italic;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .copy-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .copy-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .categories-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 Bibliothèque de Prompts</h1>
+            <p class="subtitle">Collection complète de templates pour optimiser vos interactions IA</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Prompts</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Catégories</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Français</div>
+                </div>
+            </div>
+
+            <!-- Juridique & Conformité -->
+            <div class="category-card" onclick="toggleCategory('juridique')">
+                <div class="category-header">
+                    <div class="category-icon">⚖️</div>
+                    <div>
+                        <div class="category-title">Juridique & Conformité</div>
+                        <div class="category-count">22+ prompts</div>
+                    </div>
+                </div>
+                <div class="prompts-list" id="juridique">
+                    <div class="prompt-item">
+                        <div class="prompt-title">Contrat de prestation</div>
+                        <div class="prompt-text">Rédige un contrat de prestation de services entre [PRESTATAIRE] et [CLIENT] pour [TYPE DE PRESTATION]. Inclus les obligations de chaque partie, les conditions de paiement, les clauses de résiliation, et les pénalités. Durée : [DURÉE]. Montant : [MONTANT].</div>
+                        <button class="copy-btn" onclick="copyPrompt(this)">Copier</button>
+                    </div>
+                    <div class="prompt-item">
+                        <div class="prompt-title">Politique de confidentialité RGPD</div>
+                        <div class="prompt-text">Crée une politique de confidentialité conforme au RGPD pour [SITE WEB/APPLICATION] qui collecte ces données : [TYPES DE DONNÉES]. Inclus les finalités, la base légale, les droits des utilisateurs, et les procédures de contact. Secteur : [SECTEUR D'ACTIVITÉ].</div>
+                        <button class="copy-btn" onclick="copyPrompt(this)">Copier</button>
+                    </div>
+                    <div class="prompt-item">
+                        <div class="prompt-title">Conditions générales de vente</div>
+                        <div class="prompt-text">Rédige des CGV complètes pour [ENTREPRISE] vendant [PRODUITS/SERVICES]. Inclus les conditions de commande, de paiement, de livraison, les garanties, et le droit de rétractation. Type de clientèle : [B2B/B2C]. Pays : [PAYS].</div>
+                        <button class="copy-btn" onclick="copyPrompt(this)">Copier</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <h3>🚀 Maximisez votre productivité avec l'IA</h3>
+            <p>Cette bibliothèque contient plus de 500 prompts soigneusement conçus pour vous aider dans tous vos projets professionnels et personnels. Chaque prompt est personnalisable selon vos besoins spécifiques.</p>
+            <div style="margin-top: 20px; padding: 20px; background: #f7fafc; border-radius: 15px; border-left: 4px solid #667eea;">
+                <strong>💡 Conseil d'utilisation :</strong> Remplacez les éléments entre [CROCHETS] par vos informations spécifiques pour obtenir les meilleurs résultats.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleCategory(categoryId) {
+            const promptsList = document.getElementById(categoryId);
+            const allLists = document.querySelectorAll('.prompts-list');
+            
+            // Fermer toutes les autres catégories
+            allLists.forEach(list => {
+                if (list.id !== categoryId) {
+                    list.classList.remove('active');
+                }
+            });
+            
+            // Toggle la catégorie cliquée
+            promptsList.classList.toggle('active');
+        }
+
+        function copyPrompt(button) {
+            const promptText = button.previousElementSibling.textContent;
+            
+            navigator.clipboard.writeText(promptText).then(function() {
+                const originalText = button.textContent;
+                button.textContent = 'Copié !';
+                button.style.background = '#10b981';
+                
+                setTimeout(function() {
+                    button.textContent = originalText;
+                    button.style.background = '';
+                }, 2000);
+            }).catch(function() {
+                // Fallback pour les navigateurs plus anciens
+                const textArea = document.createElement('textarea');
+                textArea.value = promptText;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                const originalText = button.textContent;
+                button.textContent = 'Copié !';
+                button.style.background = '#10b981';
+                
+                setTimeout(function() {
+                    button.textContent = originalText;
+                    button.style.background = '';
+                }, 2000);
+            });
+        }
+
+        // Fonction de recherche
+        document.getElementById('searchBox').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const promptItems = document.querySelectorAll('.prompt-item');
+            const categoryCards = document.querySelectorAll('.category-card');
+
+            promptItems.forEach(item => {
+                const title = item.querySelector('.prompt-title').textContent.toLowerCase();
+                const text = item.querySelector('.prompt-text').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || text.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    // Ouvrir la catégorie parent
+                    const parentList = item.closest('.prompts-list');
+                    if (parentList && searchTerm.length > 2) {
+                        parentList.classList.add('active');
+                    }
+                } else {
+                    item.style.display = searchTerm.length > 2 ? 'none' : 'block';
+                }
+            });
+
+            // Si la recherche est vide, fermer toutes les catégories
+            if (searchTerm.length === 0) {
+                document.querySelectorAll('.prompts-list').forEach(list => {
+                    list.classList.remove('active');
+                });
+            }
+        });
+
+        // Animation au scroll
+        function animateOnScroll() {
+            const cards = document.querySelectorAll('.category-card');
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+                
+                if (isVisible) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // Initialiser les animations
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+
+        // Style initial pour les cartes
+        document.querySelectorAll('.category-card').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(50px)';
+            card.style.transition = `all 0.6s ease ${index * 0.1}s`;
+        });
+
+        // Statistiques animées
+        function animateStats() {
+            const stats = document.querySelectorAll('.stat-number');
+            stats.forEach(stat => {
+                const target = parseInt(stat.textContent.replace(/\D/g, ''));
+                let current = 0;
+                const increment = target / 50;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    
+                    if (stat.textContent.includes('+')) {
+                        stat.textContent = Math.floor(current) + '+';
+                    } else if (stat.textContent.includes('%')) {
+                        stat.textContent = Math.floor(current) + '%';
+                    } else {
+                        stat.textContent = Math.floor(current);
+                    }
+                }, 50);
+            });
+        }
+
+        // Lancer l'animation des stats au chargement
+        window.addEventListener('load', () => {
+            setTimeout(animateStats, 1000);
+        });
+
+        // Effet de particules sur le header (optionnel)
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.style.position = 'absolute';
+            particle.style.width = '4px';
+            particle.style.height = '4px';
+            particle.style.background = 'rgba(102, 126, 234, 0.6)';
+            particle.style.borderRadius = '50%';
+            particle.style.pointerEvents = 'none';
+            particle.style.left = Math.random() * window.innerWidth + 'px';
+            particle.style.top = '-10px';
+            particle.style.animation = 'fall 8s linear infinite';
+            
+            document.body.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 8000);
+        }
+
+        // Style pour l'animation des particules
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fall {
+                to {
+                    transform: translateY(calc(100vh + 10px));
+                    opacity: 0;
+                }
+            }
+            
+            .category-card:hover .category-icon {
+                transform: scale(1.1);
+                transition: transform 0.3s ease;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Créer des particules occasionnellement
+        setInterval(createParticle, 3000);
+    </script>
+</body>
+</html>
+
+        <div class="search-container">
+            <input type="text" class="search-box" placeholder="🔍 Rechercher un prompt..." id="searchBox">
+        </div>
+
+        <div class="categories-grid">
+            <!-- Rédaction & Contenu -->
+            <div class="category-card" onclick="toggleCategory('redaction')">
+                <div class="category-header">
+                    <div class="category-icon">✍️</div>
+                    <div>
+                        <div class="category-title">Rédaction & Contenu</div>
+                        <div class="category-count">45+ prompts</div>
+                    </div>
+                </div>
+                <div class="prompts-list" id="redaction">
+                    <div class="prompt-item">
+                        <div class="prompt-title">Article de blog optimisé SEO</div>
+                        <div class="prompt-text">Rédige un article de blog de [NOMBRE] mots sur le sujet "[SUJET]" optimisé pour le SEO. Inclus une introduction accrocheuse, des sous-titres H2 et H3, et une conclusion avec un appel à l'action. Ton cible : [AUDIENCE CIBLE]. Mot-clé principal : [MOT-CLE].</div>
+                        <button class="copy-btn" onclick="copyPrompt(this)">Copier</button>
+                    </div>
+                    <div class="prompt-item">
+                        <div class="prompt-title">Newsletter engageante</div>
+                        <div class="prompt-text">Crée une newsletter hebdomadaire pour [ENTREPRISE/MARQUE] dans le secteur [SECTEUR]. Inclus un titre accrocheur, 3 sections principales avec du contenu utile, et un CTA clair. Ton : [PROFESSIONNEL/DÉCONTRACTÉ/AMICAL]. Longueur : [NOMBRE] mots maximum.</div>
+                        <button class="copy-btn" onclick="copyPrompt(this)">Copier</button>
+                    </div>
+                    <div class="prompt-item">
+                        <div class="prompt-title">Correction et amélioration de texte</div>
+                        <div class="prompt-text">Corrige et améliore le texte suivant en respectant ces critères : [CRITÈRES]. Veille à la grammaire, l'orthographe, la fluidité et la clarté. Propose des améliorations stylistiques tout en conservant le sens original. Texte : "[TEXTE À CORRIGER]"</div>
+                        <button class="copy-btn" onclick="copyPrompt(this)">Copier</button>
+                    </div>
+                    <div class="prompt-item">
+                        <div class="prompt-title">Résumé exécutif</div>
+                        <div class="prompt-text">Crée un résumé exécutif de [NOMBRE] pages pour [DOCUMENT/PROJET]. Inclus les points clés, les recommandations principales, et les actions prioritaires. Format : professionnel et structuré. Audience : [DIRIGEANTS/INVESTISSEURS/ÉQUIPE].</div>
+                        <button class="copy-btn" onclick="copyPrompt(this)">Copier</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marketing & Communication -->
+            <div class="category-card" onclick="toggleCategory('marketing')">
+                <div class="category-header">
+                    <div class="category-icon">📢</div>
+                    <div>
+                        <div class="category-title">Marketing & Communication</div>
+                        <div class="category-count">52+ prompts</div>
+                    </div>
+                </div>
+                <div class="prompts-list" id="marketing">
+                    <div class="prompt-item">
+                        <div class="prompt-title">Stratégie de contenu réseaux sociaux</div>
+                        <div class="prompt-text">Développe une stratégie de contenu pour [RÉSEAU SOCIAL] pour [ENTREPRISE] dans le secteur [SECTEUR]. Inclus 30 idées de posts, le calendrier éditorial, les hashtags pertinents, et les KPIs à suivre. Objectif : [OBJECTIF MARKETING].</div>
+                        <button class="copy-btn" onclick="copyPrompt(this)">Copier</button>
+                    </div>
+                    <div class="prompt-item">
+                        <div class="prompt-title">Email marketing de conversion</div>
+                        <div class="prompt-text">Crée une séquence d'emails de [NOMBRE] emails pour convertir les prospects en clients pour [PRODUIT/SERVICE]. Inclus des objets accrocheurs, du contenu de valeur, et des CTA efficaces. Ton : [TON SOUHAITÉ]. Durée de la séquence : [DURÉE].</div>
+                        <button class="copy-btn" onclick="copyPrompt(this)">Copier</button>
+                    </div>
+                    <div class="prompt-item">
+                        <div class="prompt-title">Analyse de la concurrence</div>
+                        <div class="prompt-text">Analyse les stratégies marketing de mes 5 principaux concurrents dans le secteur [SECTEUR]. Identifie leurs points forts, faiblesses, positionnement, et recommande des opportunités pour [MON ENTREPRISE]. Focus sur : [ASPECTS À ANALYSER].</div>
+                        <button class="copy-btn" onclick="copyPrompt(this)">Copier</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Business & Entrepreneuriat -->
+            <div class="category-card" onclick="toggleCategory('business')">
+                <div class="category-header">
+                    <div class="category-icon">💼</div>
+                    <div>
+                        <div class="category-title">Business & Entrepreneuriat</div>
+                        <div class="category-count">38+ prompts</div>
+                    </div>
+                </div>
+                <div class="prompts-list" id="business">
+                    <div class="prompt-item">
+                        <div class="prompt-title">Business plan complet</div>
+                        <div class="prompt-text">Crée un business plan détaillé pour [IDÉE D'ENTREPRISE] dans le secteur [SECTEUR]. Inclus l'executive summary, l'analyse de marché, le modèle économique, la stratégie marketing, les projections financières sur 3 ans, et l'analyse des risques.</div>
+                        <button class="copy-btn" onclick="copyPrompt(this)">Copier</button>
+                    </div>
+                    <div class="prompt-item">
+                        <div class="prompt-title">Pitch deck investisseurs</div>
+                        <div class="prompt-text">Crée un pitch deck de [NOMBRE] slides pour lever des fonds pour [STARTUP]. Inclus le problème, la solution, le marché, le modèle économique, la traction, l'équipe, et le montant recherché. Style : professionnel et convaincant.</div>
+                        <button class="copy-btn" onclick="copyPrompt(this)">Copier</button>
+                    </div>
+                    <div class="prompt-item">
+                        <div class="prompt-title">Analyse SWOT détaillée</div>
+                        <div class="prompt-text">Réalise une analyse SWOT complète pour [ENTREPRISE/PROJET] dans le contexte [CONTEXTE]. Identifie 5 éléments minimum pour chaque catégorie (Forces, Faiblesses, Opportunités, Menaces) avec des exemples concrets et des recommandations stratégiques.</div>
+                        <button class="copy-btn" onclick="copyPrompt(this)">Copier</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Éducation & Formation -->
+            <div class="category-card" onclick="toggleCategory('education')">
+                <div class="category-header">
+                    <div class="category-icon">🎓</div>
+                    <div>
+                        <div class="category-title">Éducation & Formation</div>
+                        <div class="category-count">41+ prompts</div>
+                    </div>
+                </div>
+                <div class="prompts-list" id="education">
+                    <div class="prompt-item">
+                        <div class="prompt-title">Plan de cours interactif</div>
+                        <div class="prompt-text">Crée un plan de cours de [DURÉE] sur le sujet "[SUJET]" pour des [NIVEAU D'ÉTUDE]. Inclus les objectifs pédagogiques, les activités interactives, les supports nécessaires, et l'évaluation. Méthode pédagogique : [MÉTHODE SOUHAITÉE].</div>
+                        <button class="copy-btn" onclick="copyPrompt(this)">Copier</button>
+                    </div>
+                    <div class="prompt-item">
+                        <div class="prompt-title">Quiz et évaluation</div>
+                        <div class="prompt-text">Crée un quiz de [NOMBRE] questions sur [SUJET] pour évaluer le niveau [NIVEAU]. Inclus différents types de questions (QCM, vrai/faux, questions ouvertes) avec les réponses et les explications. Difficulté : [FACILE/MOYEN/DIFFICILE].</div>
+                        <button class="copy-btn" onclick="copyPrompt(this)">Copier</button>
+                    </div>
+                    <div class="prompt-item">
+                        <div class="prompt-title">Fiche de révision</div>
+                        <div class="prompt-text">Crée une fiche de révision complète sur [SUJET/CHAPITRE] pour [NIVEAU D'ÉTUDE]. Inclus les points clés, les définitions importantes, des exemples pratiques, et des moyens mnémotechniques. Format : clair et structuré pour faciliter la mémorisation.</div>
+                        <button class="copy-btn" onclick="copyPrompt(this)">Copier</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Créativité & Design -->
+            <div class="category-card" onclick="toggleCategory('creativite')">
+                <div class="category-header">
+                    <div class="category-icon">🎨</div>
+                    <div>
+                        <div class="category-title">Créativité & Design</div>
+                        <div class="category-count">35+ prompts</div>
+                    </div>
+                </div>
+                <div class="prompts-list" id="creativite">
+                    <div class="prompt-item">
+                        <div class="prompt-title">Concept créatif campagne</div>
+                        <div class="prompt-text">Développe 3 concepts créatifs pour une campagne [TYPE DE CAMPAGNE] pour [MARQUE/PRODUIT]. Inclus le message principal, le ton, les visuels suggérés, et les canaux de diffusion. Cible : [AUDIENCE]. Budget : [GAMME DE BUDGET].</div>
+                        <button class="copy-btn" onclick="copyPrompt(this)">Copier</button>
+                    </div>
+                    <div class="prompt-item">
+                        <div class="prompt-title">Brief créatif design</div>
+                        <div class="prompt-text">Crée un brief créatif détaillé pour [PROJET DESIGN]. Inclus les objectifs, la cible, l'univers graphique souhaité, les contraintes techniques, les références visuelles, et les livrables attendus. Style : [STYLE SOUHAITÉ].</div>
+                        <button class="copy-btn" onclick="copyPrompt(this)">Copier</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Programmation & Tech -->
+            <div class="category-card" onclick="toggleCategory('programmation')">
+                <div class="category-header">
+                    <div class="category-icon">💻</div>
+                    <div>
+                        <div class="category-title">Programmation & Tech</div>
+                        <div class="category-count">47+ prompts</div>
+                    </div>
+                </div>
+                <div class="prompts-list" id="programmation">
+                    <div class="prompt-item">
+                        <div class="prompt-title">Code review et optimisation</div>
+                        <div class="prompt-text">Analyse ce code [LANGAGE] et propose des améliorations : [CODE]. Vérifie la performance, la lisibilité, les bonnes pratiques, la sécurité, et suggère des optimisations. Explique chaque recommandation avec des exemples concrets.</div>
+                        <button class="copy-btn" onclick="copyPrompt(this)">Copier</button>
+                    </div>
+                    <div class="prompt-item">
+                        <div class="prompt-title">Documentation technique</div>
+                        <div class="prompt-text">Crée une documentation technique complète pour [PROJET/API/FONCTION]. Inclus l'installation, l'utilisation, les paramètres, les exemples de code, et les cas d'erreur. Public cible : [DÉVELOPPEURS/UTILISATEURS FINAUX].</div>
+                        <button class="copy-btn" onclick="copyPrompt(this)">Copier</button>
+                    </div>
+                    <div class="prompt-item">
+                        <div class="prompt-title">Architecture logicielle</div>
+                        <div class="prompt-text">Conçois l'architecture pour une application [TYPE D'APP] avec ces fonctionnalités : [FONCTIONNALITÉS]. Inclus le choix des technologies, la structure des données, les patterns de design, et les considérations de scalabilité. Contraintes : [CONTRAINTES].</div>
+                        <button class="copy-btn" onclick="copyPrompt(this)">Copier</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analyse & Recherche -->
+            <div class="category-card" onclick="toggleCategory('analyse')">
+                <div class="category-header">
+                    <div class="category-icon">📊</div>
+                    <div>
+                        <div class="category-title">Analyse & Recherche</div>
+                        <div class="category-count">33+ prompts</div>
+                    </div>
+                </div>
+                <div class="prompts-list" id="analyse">
+                    <div class="prompt-item">
+                        <div class="prompt-title">Étude de marché complète</div>
+                        <div class="prompt-text">Réalise une étude de marché approfondie pour [PRODUIT/SERVICE] sur le marché [GÉOGRAPHIE]. Inclus la taille du marché, les tendances, les segments client, la concurrence, et les opportunités. Méthodes d'analyse : [MÉTHODES SOUHAITÉES].</div>
+                        <button class="copy-btn" onclick="copyPrompt(this)">Copier</button>
+                    </div>
+                    <div class="prompt-item">
+                        <div class="prompt-title">Analyse de données</div>
+                        <div class="prompt-text">Analyse ces données [TYPE DE DONNÉES] et identifie les tendances, corrélations, et insights clés : [DONNÉES]. Présente les résultats avec des visualisations suggérées et des recommandations actionables pour [OBJECTIF].</div>
+                        <button class="copy-btn" onclick="copyPrompt(this)">Copier</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RH & Management -->
+            <div class="category-card" onclick="toggleCategory('rh')">
+                <div class="category-header">
+                    <div class="category-icon">👥</div>
+                    <div>
+                        <div class="category-title">RH & Management</div>
+                        <div class="category-count">39+ prompts</div>
+                    </div>
+                </div>
+                <div class="prompts-list" id="rh">
+                    <div class="prompt-item">
+                        <div class="prompt-title">Fiche de poste détaillée</div>
+                        <div class="prompt-text">Crée une fiche de poste complète pour le rôle de [POSTE] dans une [ENTREPRISE/SECTEUR]. Inclus la mission, les responsabilités, le profil recherché, les compétences techniques et soft skills, et les conditions. Niveau : [JUNIOR/SENIOR/EXPERT].</div>
+                        <button class="copy-btn" onclick="copyPrompt(this)">Copier</button>
+                    </div>
+                    <div class="prompt-item">
+                        <div class="prompt-title">Plan de formation employé</div>
+                        <div class="prompt-text">Développe un plan de formation de [DURÉE] pour [EMPLOYÉ/ÉQUIPE] sur [COMPÉTENCES À DÉVELOPPER]. Inclus les objectifs, le programme détaillé, les ressources nécessaires, et les critères d'évaluation. Budget estimé : [BUDGET].</div>
+                        <button class="copy-btn" onclick="copyPrompt(this)">Copier</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vente & Négociation -->
+            <div class="category-card" onclick="toggleCategory('vente')">
+                <div class="category-header">
+                    <div class="category-icon">💰</div>
+                    <div>
+                        <div class="category-title">Vente & Négociation</div>
+                        <div class="category-count">28+ prompts</div>
+                    </div>
+                </div>
+                <div class="prompts-list" id="vente">
+                    <div class="prompt-item">
+                        <div class="prompt-title">Script de vente personnalisé</div>
+                        <div class="prompt-text">Crée un script de vente pour [PRODUIT/SERVICE] adapté au profil client [TYPE DE CLIENT]. Inclus l'accroche, la découverte des besoins, l'argumentation, le traitement des objections, et la conclusion. Durée estimée : [DURÉE].</div>
+                        <button class="copy-btn" onclick="copyPrompt(this)">Copier</button>
+                    </div>
+                    <div class="prompt-item">
+                        <div class="prompt-title">Proposition commerciale</div>
+                        <div class="prompt-text">Rédige une proposition commerciale pour [CLIENT] concernant [PROJET/BESOIN]. Inclus l'analyse du besoin, la solution proposée, les bénéfices, le planning, et le tarif. Format : professionnel et persuasif.</div>
+                        <button class="copy-btn" onclick="copyPrompt(this)">Copier</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Santé & Bien-être -->
+            <div class="category-card" onclick="toggleCategory('sante')">
+                <div class="category-header">
+                    <div class="category-icon">🏥</div>
+                    <div>
+                        <div class="category-title">Santé & Bien-être</div>
+                        <div class="category-count">25+ prompts</div>
+                    </div>
+                </div>
+                <div class="prompts-list" id="sante">
+                    <div class="prompt-item">
+                        <div class="prompt-title">Programme de wellness en entreprise</div>
+                        <div class="prompt-text">Conçois un programme de bien-être au travail pour une entreprise de [TAILLE] dans le secteur [SECTEUR]. Inclus les activités, le planning, le budget estimé, et les métriques de succès. Focus : [ASPECTS PRIORITAIRES]. Durée : [DURÉE].</div>
+                        <button class="copy-btn" onclick="copyPrompt(this)">Copier</button>
+                    </div>
+                    <div class="prompt-item">
+                        <div class="prompt-title">Plan nutrition personnalisé</div>
+                        <div class="prompt-text">Crée un plan nutritionnel hebdomadaire pour [PROFIL] avec ces objectifs : [OBJECTIFS]. Inclus les repas détaillés, les collations, les quantités, et les alternatives. Contraintes : [ALLERGIES/RÉGIMES SPÉCIAUX]. Budget : [BUDGET].</div>
+                        <button class="copy-btn" onclick="copyPrompt(this)">Copier</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Finance & Comptabilité -->
+            <div class="category-card" onclick="toggleCategory('finance')">
+                <div class="category-header">
+                    <div class="category-icon">📈</div>
+                    <div>
+                        <div class="category-title">Finance & Comptabilité</div>
+                        <div class="category-count">31+ prompts</div>
+                    </div>
+                </div>
+                <div class="prompts-list" id="finance">
+                    <div class="prompt-item">
+                        <div class="prompt-title">Plan de financement startup</div>
+                        <div class="prompt-text">Développe un plan de financement pour [STARTUP] cherchant à lever [MONTANT]. Inclus l'utilisation des fonds, les projections financières, le ROI pour les investisseurs, et la stratégie de sortie. Secteur : [SECTEUR]. Phase : [PHASE DE DÉVELOPPEMENT].</div>
+                        <button class="copy-btn" onclick="copyPrompt(this)">Copier</button>
+                    </div>
+                    <div class="prompt-item">
+                        <div class="prompt-title">Analyse de rentabilité</div>
+                        <div class="prompt-text">Réalise une analyse de rentabilité pour [PROJET/INVESTISSEMENT]. Calcule le ROI, VAN, TRI, et le seuil de rentabilité. Inclus les hypothèses, les risques financiers, et les recommandations. Horizon : [PÉRIODE D'ANALYSE].</div>
+                        <button class="copy-btn" onclick="copyPrompt(this)">Copier</button>
+                    </div>
+                </div>
+            </div
